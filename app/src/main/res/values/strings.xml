@@ -6,4 +6,5 @@
     <string name="back_button">Back button</string>
     <string name="users">Users</string>
     <string name="opens_page_to_add_new_user">Opens page to add new user</string>
+    <string name="user_profile_image">User profile image</string>
 </resources>
