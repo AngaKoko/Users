@@ -5,21 +5,21 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "user_table", indices = [Index(value = ["ID_"], unique = true)])
+@Entity(tableName = "user_table", indices = [Index(value = ["id"], unique = true)])
 data class User(
-    @PrimaryKey val ID_: Int = -1,
-    @ColumnInfo val name: String = "",
-    @ColumnInfo val username: String = "",
-    @ColumnInfo val email: String = "",
-    @ColumnInfo val street: String = "",
-    @ColumnInfo val suite: String = "",
-    @ColumnInfo val city: String = "",
-    @ColumnInfo val zipcode: String = "",
-    @ColumnInfo val lat: String = "",
-    @ColumnInfo val lng: String = "",
-    @ColumnInfo val phone: String = "",
-    @ColumnInfo val website: String = "",
-    @ColumnInfo val company: String = "",
-    @ColumnInfo val catchPhrase: String = "",
-    @ColumnInfo val bs: String = ""
+    @PrimaryKey var id: Int = -1,
+    @ColumnInfo var name: String = "",
+    @ColumnInfo var username: String = "",
+    @ColumnInfo var email: String = "",
+    @ColumnInfo var street: String = "",
+    @ColumnInfo var suite: String = "",
+    @ColumnInfo var city: String = "",
+    @ColumnInfo var zipcode: String = "",
+    @ColumnInfo var lat: String = "",
+    @ColumnInfo var lng: String = "",
+    @ColumnInfo var phone: String = "",
+    @ColumnInfo var website: String = "",
+    @ColumnInfo var company: String = "",
+    @ColumnInfo var catchPhrase: String = "",
+    @ColumnInfo var bs: String = ""
 )

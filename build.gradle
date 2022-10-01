@@ -4,7 +4,7 @@ buildscript {
         kotlin_version = '1.5.30'
         android_plugin_version = '3.4.1'
         version_navigation = '2.5.0-alpha02'
-        version_room = "2.4.1"
+        version_room = "2.4.3"
         version_coroutine = "1.2.1"
         version_retrofit = "2.9.0"
         version_moshi = "1.8.0"
