@@ -12,10 +12,18 @@
         tools:layout="@layout/fragment_user_home" >
         <action
             android:id="@+id/action_userHomeFragment_to_userListFragment"
-            app:destination="@id/userListFragment" />
+            app:destination="@id/userListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_userHomeFragment_to_newUserFragment"
-            app:destination="@id/newUserFragment" />
+            app:destination="@id/newUserFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_top" />
     </fragment>
     <fragment
         android:id="@+id/userListFragment"
