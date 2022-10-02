@@ -36,7 +36,7 @@ interface UserApiService {
      * HTTP method
      */
     @GET("users")
-    fun getUserAsync(): Deferred<UserResponse>
+    fun getUserAsync(): Deferred<MutableList<UserResponse>>
 
 }
 /**
