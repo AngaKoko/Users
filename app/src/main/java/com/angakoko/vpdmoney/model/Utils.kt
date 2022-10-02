@@ -12,6 +12,8 @@ fun UserResponse.toUser(): User{
         zipcode = address.zipcode,
         company = company.companyName,
         catchPhrase = company.catchPhrase,
-        bs = company.bs
+        bs = company.bs,
+        lat = address.geo.lat,
+        lng = address.geo.lat,
     )
 }

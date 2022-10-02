@@ -75,7 +75,10 @@ class UserHomeFragment : Fragment(), ListUserAdapter.OnClickListener {
         }
     }
 
+    //List user on click lister from Adapter
     override fun onUserClicked(item: User) {
-        //TODO("Not yet implemented")
+        //set selected user in view model
+        viewModel.setUser(item)
+        findNavController().navigate(R.id.action_userHomeFragment_to_userDetailsFragment)
     }
 }

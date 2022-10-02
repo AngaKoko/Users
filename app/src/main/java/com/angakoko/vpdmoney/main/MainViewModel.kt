@@ -30,6 +30,10 @@ class MainViewModel(private val context: Context, application: Application): And
     fun getHeader(): MutableLiveData<String> = header
     fun setHeader(string: String){header.value = string}
 
+    private val user: MutableLiveData<User> = MutableLiveData()
+    fun getUser(): MutableLiveData<User> = user
+    fun setUser(u: User){user.value = u}
+
     fun getUsers(db: UserDatabase): Flow<PagingData<User>> {
         return movieRepo.getPopularMovies(db).cachedIn(viewModelScope)
     }
