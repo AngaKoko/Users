@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.angakoko.vpdmoney.model.User
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [User::class], version = 2)
 abstract class UserDatabase(): RoomDatabase() {
 
     abstract fun userDao(): UserDao

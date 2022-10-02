@@ -28,7 +28,7 @@ class UserDetailsFragment : Fragment() {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_user_details, container, false)
 
         val viewModelFactory = ViewModelFactory(requireActivity(), requireActivity().application)
-        viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[MainViewModel::class.java]
 
         viewModel.setHeader("")
 

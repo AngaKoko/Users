@@ -20,6 +20,7 @@
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
                     android:hint="@string/name"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -31,6 +32,7 @@
                     android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="text"
                     android:hint="@string/username"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -42,6 +44,7 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
                     android:hint="@string/email"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,6 +56,7 @@
                     android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
                     android:hint="@string/address"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,6 +68,7 @@
                     android:id="@+id/suite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters"
                     android:hint="@string/suite"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,6 +80,7 @@
                     android:id="@+id/city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
                     android:hint="@string/city"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,6 +92,7 @@
                     android:id="@+id/zip_code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="text"
                     android:hint="@string/zipcode"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,6 +104,7 @@
                     android:id="@+id/company_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
                     android:hint="@string/company_name"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,6 +116,7 @@
                     android:id="@+id/catchphrase"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
                     android:hint="@string/catchphrase"/>
             </com.google.android.material.textfield.TextInputLayout>
 

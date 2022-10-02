@@ -36,8 +36,8 @@ class UserHomeFragment : Fragment(), ListUserAdapter.OnClickListener {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_user_home, container, false)
 
-        val viewModelFactory = ViewModelFactory(requireContext(), requireActivity().application)
-        viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(MainViewModel::class.java)
+        val viewModelFactory = ViewModelFactory(requireActivity(), requireActivity().application)
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[MainViewModel::class.java]
 
         //Set the header to [Users]
         viewModel.setHeader(getString(R.string.users))
