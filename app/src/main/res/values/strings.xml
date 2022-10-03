@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">VPD Money</string>
     <string name="app_logo">App logo</string>
+    <string name="app_authority" translatable="false">com.angakoko.vpdmoney</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="back_button">Back button</string>
@@ -20,4 +21,5 @@
     <string name="save">Save</string>
     <string name="new_user">New user</string>
     <string name="required">Required</string>
+    <string name="new_user_added">New user added</string>
 </resources>

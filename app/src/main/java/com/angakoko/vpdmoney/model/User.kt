@@ -21,5 +21,6 @@ data class User(
     @ColumnInfo var website: String = "",
     @ColumnInfo var company: String = "",
     @ColumnInfo var catchPhrase: String = "",
-    @ColumnInfo var bs: String = ""
+    @ColumnInfo var bs: String = "",
+    @ColumnInfo var imgUri: String = "",
 )

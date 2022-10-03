@@ -6,6 +6,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.angakoko.vpdmoney.model.User
 
 @Dao
@@ -18,6 +19,9 @@ interface UserDao {
     //Insert an item into DB
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: User)
+
+    @Update
+    suspend fun update(user: User)
 
     //Query an items from DB
     @Query("SELECT * FROM user_table")

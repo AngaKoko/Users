@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.room.withTransaction
+import com.angakoko.vpdmoney.R
 import com.angakoko.vpdmoney.api.UserApi
 import com.angakoko.vpdmoney.db.UserDatabase
 import com.angakoko.vpdmoney.model.User
@@ -45,15 +46,19 @@ class MainViewModel(private val activity: Activity, application: Application): A
     private val listUsers = userDao.getAllUser()
     fun getListUsers() = listUsers
 
-    fun getUsers(db: UserDatabase): Flow<PagingData<User>> {
-        return movieRepo.getPopularMovies(db).cachedIn(viewModelScope)
-    }
-
     init {
         uiScope.launch {
             //Check if local DB is empty or not
             val lastUser = userDao.getLastUser()
             if(lastUser == null)queryUsers()
+        }
+    }
+
+    fun updateUserInDb(user: User){
+        uiScope.launch {
+            withContext(Dispatchers.IO) {
+                userDao.update(user)
+            }
         }
     }
 
@@ -73,7 +78,7 @@ class MainViewModel(private val activity: Activity, application: Application): A
         withContext(Dispatchers.IO) {
             userDao.insert(user)
         }
-        setMessage("New user added")
+        setMessage(activity.getString(R.string.new_user_added))
         activity.onBackPressed()
     }
 
