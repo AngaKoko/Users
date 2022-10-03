@@ -1,5 +1,6 @@
 package com.angakoko.vpdmoney.db
 
+import androidx.lifecycle.LiveData
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
@@ -21,6 +22,14 @@ interface UserDao {
     //Query an items from DB
     @Query("SELECT * FROM user_table")
     fun getUsers(): PagingSource<Int, User>
+
+    //Query an items from DB
+    @Query("SELECT * FROM user_table")
+    fun getAllUser(): LiveData<List<User>>
+
+    //Get last object
+    @Query("SELECT * FROM user_table ORDER BY id DESC LIMIt 1")
+    suspend fun getLastUser(): User?
 
     //For test purpose
     @Query("SELECT * FROM user_table LIMIt 5")

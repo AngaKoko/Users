@@ -14,7 +14,7 @@ class DBUserRepository {
     @OptIn(ExperimentalPagingApi::class)
     fun getPopularMovies(dB: UserDatabase): Flow<PagingData<User>> {
         return Pager(
-            config = PagingConfig(pageSize = 2, enablePlaceholders = false),
+            config = PagingConfig(pageSize = 10, enablePlaceholders = false),
             remoteMediator = UserRemoteMediator(dB)
         ){
             dB.userDao().getUsers()

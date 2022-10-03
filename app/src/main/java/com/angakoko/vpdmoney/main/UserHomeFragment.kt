@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,10 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.angakoko.vpdmoney.R
 import com.angakoko.vpdmoney.ViewModelFactory
 import com.angakoko.vpdmoney.databinding.FragmentUserHomeBinding
-import com.angakoko.vpdmoney.db.UserDatabase
 import com.angakoko.vpdmoney.model.User
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass.
@@ -49,6 +47,14 @@ class UserHomeFragment : Fragment(), ListUserAdapter.OnClickListener {
             adapter = listUserAdapter
         }
 
+        viewModel.getListUsers().observe(requireActivity(), Observer {
+            listUserAdapter.swapList(it)
+        })
+
+        viewModel.getIsRefreshing().observe(requireActivity(), Observer {
+            binding.swipeRefresh.isRefreshing = it
+        })
+
         //Listen to on new button click
         binding.fab.setOnClickListener {
             //Navigate to new user fragment when new button is clicked
@@ -56,23 +62,12 @@ class UserHomeFragment : Fragment(), ListUserAdapter.OnClickListener {
         }
 
         binding.swipeRefresh.setOnRefreshListener {
-            binding.swipeRefresh.isRefreshing = false
+            viewModel.queryUsers()
         }
-
-        getUsers()
 
         binding.lifecycleOwner = requireActivity()
         binding.viewModel = viewModel
         return binding.root
-    }
-
-    private fun getUsers(){
-        lifecycleScope.launch {
-            val db = UserDatabase.getInstance(requireContext().applicationContext)
-            viewModel.getUsers(db).collectLatest {
-                listUserAdapter.submitData(it)
-            }
-        }
     }
 
     //List user on click lister from Adapter

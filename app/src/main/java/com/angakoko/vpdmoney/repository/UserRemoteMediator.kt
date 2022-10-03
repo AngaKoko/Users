@@ -53,10 +53,10 @@ class UserRemoteMediator(private val dB: UserDatabase) : RemoteMediator<Int, Use
             dB.withTransaction {
                 //Check if load type is refresh
                 if (loadType == LoadType.REFRESH) {
-                    //if refresh delete all movies in DB
+                    //if refresh delete all users in DB
                     userDao.deleteAll()
                 }
-                //insert list of movies in DB
+                //insert list of users in DB
                 userDao.insert(items)
             }
 

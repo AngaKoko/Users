@@ -2,15 +2,16 @@ package com.angakoko.vpdmoney.main
 
 import android.app.Activity
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.room.withTransaction
 import com.angakoko.vpdmoney.api.UserApi
 import com.angakoko.vpdmoney.db.UserDatabase
 import com.angakoko.vpdmoney.model.User
+import com.angakoko.vpdmoney.model.toUser
 import com.angakoko.vpdmoney.repository.DBUserRepository
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
@@ -22,7 +23,8 @@ class MainViewModel(private val activity: Activity, application: Application): A
     //coroutine scope
     private var uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private var movieRepo = DBUserRepository()
-    private val userDao = UserDatabase.getInstance(application).userDao()
+    private val db = UserDatabase.getInstance(application)
+    private val userDao = db.userDao()
 
     private val header: MutableLiveData<String> = MutableLiveData()
     fun getHeader(): MutableLiveData<String> = header
@@ -36,17 +38,33 @@ class MainViewModel(private val activity: Activity, application: Application): A
     fun setMessage(string: String){message.value = string}
     fun getMessage(): MutableLiveData<String> = message
 
+    private val isRefreshing:MutableLiveData<Boolean> = MutableLiveData(false)
+    fun setIsRefreshing(boolean: Boolean){isRefreshing.value = boolean}
+    fun getIsRefreshing():MutableLiveData<Boolean> = isRefreshing
+
+    private val listUsers = userDao.getAllUser()
+    fun getListUsers() = listUsers
+
     fun getUsers(db: UserDatabase): Flow<PagingData<User>> {
         return movieRepo.getPopularMovies(db).cachedIn(viewModelScope)
     }
 
     init {
-        getUsers()
+        uiScope.launch {
+            //Check if local DB is empty or not
+            val lastUser = userDao.getLastUser()
+            if(lastUser == null)queryUsers()
+        }
     }
 
     //Add new user to local DB
     fun insetUserInDb(user: User){
         uiScope.launch {
+            //get last user from DB
+            val lastUser = userDao.getLastUser() ?: User()
+            //increment unique user id
+            user.id = lastUser.id+1
+            //insert user in DB
             insertUser(user)
         }
     }
@@ -59,15 +77,27 @@ class MainViewModel(private val activity: Activity, application: Application): A
         activity.onBackPressed()
     }
 
-    fun getUsers(){
+    fun queryUsers(){
         uiScope.launch {
             val propertiesDifferConfig = UserApi.retrofitService.getUserAsync()
+            setIsRefreshing(true)
 
             try {
                 val result = propertiesDifferConfig.await()
-                Log.d("shank", "Result = $result")
+
+                val items = mutableListOf<User>()
+                for (value in result){
+                    items.add(value.toUser())
+                }
+
+                db.withTransaction {
+                    userDao.deleteAll()
+                    userDao.insert(items)
+                }
+                setIsRefreshing(false)
 
             } catch (e: Exception) {
+                setIsRefreshing(false)
                 e.printStackTrace()
             }
         }
