@@ -3,6 +3,7 @@ package com.angakoko.vpdmoney.model
 import android.content.Context
 import android.os.Environment
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.angakoko.vpdmoney.R
 import com.bumptech.glide.Glide
@@ -56,6 +57,11 @@ fun avatar(view: ImageView, avatar: String?) {
                 .error(R.drawable.ic_person)
         )
         .into(view)
+}
+
+@BindingAdapter("username")
+fun TextView.username(username: String?){
+    text = "@${username}" ?: ""
 }
 
 object Permissions{
