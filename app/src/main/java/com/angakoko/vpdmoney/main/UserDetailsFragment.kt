@@ -51,6 +51,10 @@ class UserDetailsFragment : Fragment() {
             checkForCameraPermission()
         }
 
+        binding.cameraButton.setOnClickListener {
+            checkForCameraPermission()
+        }
+
         binding.viewModel = viewModel
         binding.lifecycleOwner = requireActivity()
         return binding.root

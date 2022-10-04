@@ -37,10 +37,10 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@{viewModel.user.name}"
-                android:textStyle="bold"
                 android:textColor="@color/primaryTextColor"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/profile_image"
                 app:layout_constraintStart_toStartOf="@+id/profile_image"
                 app:layout_constraintTop_toBottomOf="@+id/profile_image"
@@ -60,12 +60,12 @@
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_email"
                 android:text="@{viewModel.user.email}"
                 app:layout_constraintEnd_toEndOf="@+id/profile_image"
                 app:layout_constraintStart_toStartOf="@+id/profile_image"
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
-                tools:text="email" />
+                tools:text="email"
+                app:drawableStartCompat="@drawable/ic_email" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -207,6 +207,17 @@
                 app:layout_constraintStart_toStartOf="@+id/textView16"
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
+            <ImageButton
+                android:id="@+id/camera_button"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginEnd="4dp"
+                android:contentDescription="@string/open_camera"
+                android:foreground="?attr/selectableItemBackground"
+                android:src="@drawable/ic_camera"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                app:layout_constraintEnd_toEndOf="@+id/profile_image"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
